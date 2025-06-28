@@ -63,7 +63,7 @@ router.get('/search', async (req, res) => {
     // Create search conditions
     const searchConditions = {
       $and: [
-        { _id: { $ne: req.user._id } }, // Exclude current user
+        // { _id: { $ne: req.user._id } }, // Exclude current user
         { isVerified: true }, // Only show verified users (optional)
         {
           $or: [
