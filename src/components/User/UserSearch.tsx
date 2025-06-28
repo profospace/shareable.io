@@ -6,6 +6,8 @@ import Input from '../UI/Input';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+const base_url = 'https://shareable-io-bfl5.onrender.com'
+
 interface UserSearchProps {
   onClose: () => void;
 }
@@ -24,7 +26,7 @@ const UserSearch: React.FC<UserSearchProps> = ({ onClose }) => {
 
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/search?q=${query}`);
+      const response = await axios.get(`${base_url}/api/users/search?q=${query}`);
       setUsers(response.data);
     } catch (error) {
       console.error('Failed to search users:', error);
