@@ -171,7 +171,7 @@ router.get('/search-advanced', async (req, res) => {
     // Use MongoDB text search for better relevance
     const searchConditions = {
       $and: [
-        { _id: { $ne: req.user._id } },
+        // { _id: { $ne: req.user._id } },
         { isVerified: true },
         { 'settings.privacy': 'public' },
         { $text: { $search: trimmedQuery } }
