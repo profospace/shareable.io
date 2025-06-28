@@ -9,6 +9,8 @@ import Profile from './components/Profile/Profile';
 import TodoDetail from './components/Todo/TodoDetail';
 import LoadingSpinner from './components/UI/LoadingSpinner';
 
+const base_url = 'https://shareable-io-bfl5.onrender.com'
+
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
 
@@ -37,25 +39,25 @@ function App() {
           <Routes>
             <Route path="/login" element={
               <PublicRoute>
-                <Login />
+                <Login base_url={base_url}/>
               </PublicRoute>
             } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <SocketProvider>
-                  <Dashboard />
+                  <Dashboard base_url={base_url} />
                 </SocketProvider>
               </ProtectedRoute>
             } />
             <Route path="/profile/:username" element={
               <ProtectedRoute>
-                <Profile />
+                <Profile base_url={base_url}/>
               </ProtectedRoute>
             } />
             <Route path="/todo/:id" element={
               <ProtectedRoute>
                 <SocketProvider>
-                  <TodoDetail />
+                  <TodoDetail base_url={base_url}/>
                 </SocketProvider>
               </ProtectedRoute>
             } />
