@@ -30,7 +30,7 @@ router.post('/send-code', async (req, res) => {
       user = new User({
         phoneNumber,
         username: `user_${Date.now()}`, // Temporary username
-        displayName: 'New User',
+        displayName: phoneNumber,
         verificationCode,
         verificationExpires,
         isVerified: false

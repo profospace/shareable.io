@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
     lowercase: true,
     trim: true,
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   displayName: {
     type: String,
-    required: true,
+    // required: true,
     trim: true,
     maxlength: 50
   },
