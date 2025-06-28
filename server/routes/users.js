@@ -1,5 +1,6 @@
 import express from 'express';
 import User from '../models/User.js';
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -59,7 +60,7 @@ router.get('/profile/:username', async (req, res) => {
 });
 
 // Update user profile
-router.put('/profile', async (req, res) => {
+router.put('/profile',authenticateToken ,async (req, res) => {
   try {
     const { displayName, bio, avatar, settings } = req.body;
     const userId = req.user._id;

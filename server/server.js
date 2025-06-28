@@ -40,8 +40,8 @@ mongoose.connection.on('error', (err) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/todos', authenticateToken, todoRoutes);
-app.use('/api/users', authenticateToken, userRoutes);
+app.use('/api/todos', todoRoutes);
+app.use('/api/users', userRoutes);
 
 // Socket.io for real-time updates
 io.use((socket, next) => {
