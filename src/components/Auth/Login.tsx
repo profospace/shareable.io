@@ -865,7 +865,7 @@ const Login: React.FC = ({ base_url }) => {
   const [usernameStatus, setUsernameStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
   const [usernameCheckTimeout, setUsernameCheckTimeout] = useState<NodeJS.Timeout | null>(null);
   const { login } = useAuth();
-
+  
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phoneNumber.trim()) {
@@ -900,6 +900,8 @@ const Login: React.FC = ({ base_url }) => {
     try {
       const response = await axios.post(`${base_url}/api/auth/verify-code`, {
         phoneNumber,
+        username,
+        displayName,
         code: verificationCode.trim()
       });
 
@@ -1085,6 +1087,32 @@ const Login: React.FC = ({ base_url }) => {
                     Demo code: {demoCode}
                   </p>
                 )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Username
+                </label>
+                <Input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter username"
+                  required
+                />
+                
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Display Name
+                </label>
+                <Input
+                  type="text"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="Enter display name"
+                  required
+                />
+                
               </div>
               <div className="flex space-x-3">
                 <Button
