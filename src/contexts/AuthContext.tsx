@@ -21,6 +21,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const base_url = 'https://shareable-io-bfl5.onrender.com'
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -45,7 +47,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users/me');
+      const response = await axios.get(`${base_url}/api/users/me`);
       setUser(response.data);
     } catch (error) {
       console.error('Failed to fetch current user:', error);
