@@ -9,6 +9,9 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import "react-datepicker/dist/react-datepicker.css";
 
+const base_url = 'https://shareable-io-bfl5.onrender.com'
+
+
 interface CreateTodoProps {
   onClose: () => void;
   onTodoCreated: (todo: any) => void;
@@ -34,7 +37,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onClose, onTodoCreated }) => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/search?q=${query}`);
+      const response = await axios.get(`${base_url}/api/users/search?q=${query}`);
       setUserSuggestions(response.data);
       setShowSuggestions(true);
     } catch (error) {
@@ -75,7 +78,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ onClose, onTodoCreated }) => {
         tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
       };
 
-      const response = await axios.post('http://localhost:5000/api/todos', todoData);
+      const response = await axios.post(`${base_url}/api/todos`, todoData);
       onTodoCreated(response.data);
       toast.success('Todo created successfully!');
     } catch (error: any) {
